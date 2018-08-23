@@ -1,4 +1,4 @@
-#t-brain competation prideict ETF(include 20 funds), there is one funds
+#t-brain competation prideict ETF(include 20 funds), there is one fund
 data <- read.table("C:/Users/Administrator/Desktop/bbb.txt", sep = "\t")
 head(data)
 tail(data)
