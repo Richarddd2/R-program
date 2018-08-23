@@ -1,0 +1,25 @@
+#t-brain competation prideict ETF(include 20 funds), there is one funds
+data <- read.table("C:/Users/Administrator/Desktop/bbb.txt", sep = "\t")
+head(data)
+tail(data)
+class(data)
+plot(data$V1,data$V6,type='l')
+library(forecast)
+ndiffs(data$V6)   
+ndata<-diff(data$V6,1)
+ndiffs(ndata)
+acf(ndata)
+plot(ndata,type="l",main="One Order Difference")
+pacf(ndata)
+m1<-arima(x = data$V6, order = c(2, 1, 19))
+qqnorm(m1$residuals) 
+qqline(m1$residuals) 
+Box.test(m1$residuals,type="Ljung-Box")
+f1<-forecast(m1,h=7,level=c(99.5))
+f1
+class(f1)
+plot(f1)
+lines(f1$fitted,col="red")
+lines(data$V6,col="green")
+#ARIMA modal pridict:79.26170,79.36914,79.33768,79.34196,79.33702,79.34872,79.37079
+#元大台湾卓越50基金市值真实数据：80.0000,79.4000,78.5500,78.9500（4月30，5月2-4日）
